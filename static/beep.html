@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Multi-stage typing test</title>
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet"> 
+	<style>
+		body {
+			font-family: 'Roboto Mono', monospace;
+			width: 100%;
+			margin: 0;
+		}
+
+		#level {
+			text-align: center;
+			font-size: 5em;
+		}
+
+		#text {
+			text-align: center;
+			font-size: 4em;
+		}
+
+		#typed {
+			color: #00CC66;
+		}
+
+		.warning1 {
+			color: #990000;
+		}
+
+		.warning2 {
+			color: #CC0000;
+		}
+	</style>
+</head>
+<body>
+	<a href="#" id="start">Start</a>
+	<h1 id="level">Level</h1>
+	<div id="text">
+		<span id="typed"></span><span id="totype"></span>
+	</div>
+	<script type="text/javascript" src="beep.bundle.js"></script>
+</body>
+</html>
