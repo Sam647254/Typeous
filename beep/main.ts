@@ -6,9 +6,9 @@ function showLevel(levelDisplay: HTMLElement, level: number, sublevel: number) {
 
 function generateString(length: number, level: number, sublevel: number): string {
 	let charset: string = level === 1 ? 'alphabetic' :
-		level < 4 ? ' abcdefghijklmnopqrstuvwxyz' :
+		level < 20 ? ' abcdefghijklmnopqrstuvwxyz' :
 		' abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-	let capitalization = level < 4 ? 'lowercase' : null;
+	let capitalization = level < 20 ? 'lowercase' : null;
 	return generate({
 		length,
 		charset,
@@ -41,7 +41,7 @@ function updateMisses(totype: HTMLElement, misses: number) {
 function startTest(levelDisplay: HTMLElement, typedDisplay: HTMLElement,
 	totypeDisplay: HTMLElement) {
 	let level = 1, sublevel = 1;
-	let CPM = 60, characters = 10;
+	let CPM = 80, characters = 10;
 	let misses = 0;
 	showLevel(levelDisplay, level, sublevel);
 	const onEnd = () => {
@@ -55,13 +55,14 @@ function startTest(levelDisplay: HTMLElement, typedDisplay: HTMLElement,
 			}
 		};
 		const cb = () => {
-			CPM += 5;
+			CPM += 2;
 			if (index < str.length) {
 				++misses;
 				try {
 					updateMisses(totypeDisplay, misses);
 				} catch (e) {
-					levelDisplay.innerHTML = e;
+					totypeDisplay.innerHTML = e;
+					typedDisplay.innerHTML = "";
 					window.onkeypress = null;
 					return;
 				}
@@ -110,10 +111,6 @@ const textDisplay = document.getElementById("text");
 const typedDisplay = document.getElementById("typed");
 const totypeDisplay = document.getElementById("totype");
 start.onclick = (event) => {
-	try {
-		startTest(levelDisplay, typedDisplay, totypeDisplay);
-	} catch (e) {
-		levelDisplay.innerHTML = e;
-	}
+	startTest(levelDisplay, typedDisplay, totypeDisplay);
 };
 })();
